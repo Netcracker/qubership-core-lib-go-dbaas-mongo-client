@@ -10,7 +10,7 @@ require (
 	github.com/netcracker/qubership-core-lib-go/v3 v3.0.0-20250418111846-e6298a4441a0
 	github.com/stretchr/testify v1.10.0
 	github.com/testcontainers/testcontainers-go v0.35.0
-	go.mongodb.org/mongo-driver v1.17.3
+	go.mongodb.org/mongo-driver v1.17.4
 )
 
 require (
