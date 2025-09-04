@@ -101,12 +101,8 @@ github.com/montanaflynn/stats v0.7.1 h1:etflOAAHORrCC44V+aR6Ftzort912ZU+YLiSTuV8
 github.com/montanaflynn/stats v0.7.1/go.mod h1:etXPPgVO6n31NxCd9KQUMvCM+ve0ruNzt6R8Bnaayow=
 github.com/morikuni/aec v1.0.0 h1:nP9CBfwrvYnBRgY6qfDQkygYDmYwOilePFkwzv4dU8A=
 github.com/morikuni/aec v1.0.0/go.mod h1:BbKIizmSmc5MMPqRYbxO4ZU0S0+P200+tUnFx7PXmsc=
-github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.0.0-20250418120050-44bc56d24469 h1:OMICZmSsu83tYn/Tz5DPFwbcOl4zZrXXobzYClCXmXw=
-github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.0.0-20250418120050-44bc56d24469/go.mod h1:HUvT/fbjbnCAZN3DFee0rhAX75wOa5BGj6eQnB/XH4o=
 github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.0.1 h1:xMIoEzTFLcaMofn5xpdbKH9hBgZr9DxQArA97aPZcLM=
 github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.0.1/go.mod h1:cO6QgR2MXjT72hYjdpgHZofbwY9WmYv+ho2ktsXWjf8=
-github.com/netcracker/qubership-core-lib-go/v3 v3.0.0-20250418111846-e6298a4441a0 h1:LnS1jRY/s9h7KINo5lH1Q5M6tGzEO+j9wUbjUePzB8M=
-github.com/netcracker/qubership-core-lib-go/v3 v3.0.0-20250418111846-e6298a4441a0/go.mod h1:1EKZPAtxng7sFKRm+MjnsQ4wJfe1+/zxjuhli6kIRLQ=
 github.com/netcracker/qubership-core-lib-go/v3 v3.0.1 h1:OgdKD1OY94LbMwOLZWUHHdTZns1TvGbxxTvaHZYL5Wk=
 github.com/netcracker/qubership-core-lib-go/v3 v3.0.1/go.mod h1:kCU3D5h4Gk129KqIK2O22eQ0deW3YriSRLHs2jqzBlE=
 github.com/opencontainers/go-digest v1.0.0 h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
@@ -163,8 +159,8 @@ github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9dec
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 github.com/yusufpapurcu/wmi v1.2.3 h1:E1ctvB7uKFMOJw3fdOW32DwGE9I7t++CRUEMKvFoFiw=
 github.com/yusufpapurcu/wmi v1.2.3/go.mod h1:SBZ9tNy3G9/m5Oi98Zks0QjeHVDvuK0qfxQmPyzfmi0=
-go.mongodb.org/mongo-driver v1.17.3 h1:TQyXhnsWfWtgAhMtOgtYHMTkZIfBTpMTsMnd9ZBeHxQ=
-go.mongodb.org/mongo-driver v1.17.3/go.mod h1:Hy04i7O2kC4RS06ZrhPRqj/u4DTYkFDAAccj+rVKqgQ=
+go.mongodb.org/mongo-driver v1.17.4 h1:jUorfmVzljjr0FLzYQsGP8cgN/qzzxlY9Vh0C9KFXVw=
+go.mongodb.org/mongo-driver v1.17.4/go.mod h1:Hy04i7O2kC4RS06ZrhPRqj/u4DTYkFDAAccj+rVKqgQ=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 h1:jq9TW8u3so/bN+JPT166wjOI6/vQPF6Xe7nMNIltagk=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0/go.mod h1:p8pYQP+m5XfbZm9fxtSKAbM6oIllS7s2AfxrChvc7iw=
 go.opentelemetry.io/otel v1.24.0 h1:0LAOdjNmQeSTzGBzduGe/rU4tZhMwL5rWgtp9Ku5Jfo=
