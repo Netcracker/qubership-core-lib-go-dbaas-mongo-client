@@ -30,7 +30,7 @@ To get `mongo dbaas client` use
  go get github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client@<latest released version>
 ```
 
-List of all released versions may be found [here](https://github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/-/tags)
+List of all released versions may be found [here](https://github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/tags)
 
 ## Usage
 
