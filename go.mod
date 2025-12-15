@@ -4,8 +4,8 @@ go 1.25.5
 
 require (
 	github.com/docker/go-connections v0.6.0
-	github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.0.8
-	github.com/netcracker/qubership-core-lib-go/v3 v3.2.4
+	github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.0.9
+	github.com/netcracker/qubership-core-lib-go/v3 v3.2.5
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.40.0
 	go.mongodb.org/mongo-driver v1.17.6
