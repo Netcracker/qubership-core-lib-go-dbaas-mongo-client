@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/docker/go-connections/nat"
+
 	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/cache"
 	dbaasbasemodel "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model"
@@ -218,12 +218,11 @@ func (suite *DatabaseTestSuite) prepareTestContainer(ctx context.Context) testco
 	env["MONGO_INITDB_ROOT_USERNAME"] = testContainerUser
 	env["MONGO_INITDB_ROOT_PASSWORD"] = testContainerPassword
 
-	port, _ := nat.NewPort("tcp", mongoPort)
 	req := testcontainers.ContainerRequest{
 		Image:        "mongo:7.0",
-		ExposedPorts: []string{port.Port()},
+		ExposedPorts: []string{mongoPort},
 		SkipReaper:   true,
-		WaitingFor:   wait.ForListeningPort(port),
+		WaitingFor:   wait.ForListeningPort(mongoPort),
 		Env:          env,
 	}
 	mongoContainer, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
