@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strings"
 
-
 	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/cache"
 	dbaasbasemodel "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model"
@@ -222,8 +221,11 @@ func (suite *DatabaseTestSuite) prepareTestContainer(ctx context.Context) testco
 		Image:        "mongo:7.0",
 		ExposedPorts: []string{mongoPort},
 		SkipReaper:   true,
-		WaitingFor:   wait.ForListeningPort(mongoPort),
-		Env:          env,
+		WaitingFor: wait.ForAll(
+			wait.ForLog("Waiting for connections").WithOccurrence(2),
+			wait.ForListeningPort(mongoPort),
+		),
+		Env: env,
 	}
 	mongoContainer, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 		ContainerRequest: req,
