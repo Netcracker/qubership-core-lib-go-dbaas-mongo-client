@@ -8,13 +8,13 @@ import (
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/cache"
 	dbaasbasemodel "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model/rest"
-	"github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/v3/model"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/auth"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/connstring"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/topology"
+	"github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/v4/model"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
+	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/auth"
+	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/connstring"
+	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/topology"
 )
 
 type MongoDbClient interface {
@@ -70,7 +70,7 @@ func (m *MongoDbClientImpl) createNewMongoDb(ctx context.Context, classifier map
 			logger.ErrorC(ctx, "Unable to build client clientOptions, error %+v", err)
 			return nil, err
 		}
-		client, err := mongo.Connect(ctx, clientOptions)
+		client, err := mongo.Connect(clientOptions)
 		if err != nil {
 			logger.ErrorC(ctx, "Unable to connect to mongo client, error %+v", err)
 			return nil, err
@@ -92,7 +92,7 @@ func (m *MongoDbClientImpl) updatePassword(ctx context.Context, cachedMongoDb *c
 	}
 	cachedMongoDb.auth.Password = connectionProperties.Password
 	cachedMongoDb.auth.AuthSource = connectionProperties.AuthDbName
-	newClient, err := mongo.Connect(ctx, m.options)
+	newClient, err := mongo.Connect(m.options)
 	if err != nil {
 		logger.ErrorC(ctx, "Couldn't connect to new mongoClient")
 		return err
