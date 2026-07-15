@@ -2,20 +2,22 @@ package mongodbaas
 
 import (
 	"context"
+	"errors"
 
 	"github.com/netcracker/qubership-core-lib-go/v3/utils"
 	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/cache"
 	dbaasbasemodel "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model/rest"
-	"github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/v3/model"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/auth"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/connstring"
-	"go.mongodb.org/mongo-driver/x/mongo/driver/topology"
+	"github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/v4/model"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
+	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/auth"
+	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/connstring"
 )
+
+const authenticationFailedCode = 18
 
 type MongoDbClient interface {
 	GetMongoDatabase(ctx context.Context) (*mongo.Database, error)
@@ -70,7 +72,7 @@ func (m *MongoDbClientImpl) createNewMongoDb(ctx context.Context, classifier map
 			logger.ErrorC(ctx, "Unable to build client clientOptions, error %+v", err)
 			return nil, err
 		}
-		client, err := mongo.Connect(ctx, clientOptions)
+		client, err := mongo.Connect(clientOptions)
 		if err != nil {
 			logger.ErrorC(ctx, "Unable to connect to mongo client, error %+v", err)
 			return nil, err
@@ -92,7 +94,7 @@ func (m *MongoDbClientImpl) updatePassword(ctx context.Context, cachedMongoDb *c
 	}
 	cachedMongoDb.auth.Password = connectionProperties.Password
 	cachedMongoDb.auth.AuthSource = connectionProperties.AuthDbName
-	newClient, err := mongo.Connect(ctx, m.options)
+	newClient, err := mongo.Connect(m.options)
 	if err != nil {
 		logger.ErrorC(ctx, "Couldn't connect to new mongoClient")
 		return err
@@ -113,8 +115,12 @@ func (m *MongoDbClientImpl) getNewConnectionProperties(ctx context.Context, clas
 
 func (m *MongoDbClientImpl) isPasswordValid(db cachedMongoDatabase, ctx context.Context) bool {
 	if err := db.mongoDb.Client().Ping(ctx, readpref.Primary()); err != nil {
-		_, ok := err.(topology.ConnectionError).Unwrap().(*auth.Error)
-		return !ok
+		var cmdErr mongo.CommandError
+		if errors.As(err, &cmdErr) {
+			return cmdErr.Code != authenticationFailedCode
+		}
+		var authErr *auth.Error
+		return !errors.As(err, &authErr)
 	}
 	return true
 }

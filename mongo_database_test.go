@@ -13,7 +13,7 @@ import (
 	. "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 const (
