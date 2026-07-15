@@ -2,6 +2,7 @@ package mongodbaas
 
 import (
 	"context"
+	"errors"
 
 	"github.com/netcracker/qubership-core-lib-go/v3/utils"
 	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
@@ -14,8 +15,9 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
 	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/auth"
 	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/connstring"
-	"go.mongodb.org/mongo-driver/v2/x/mongo/driver/topology"
 )
+
+const authenticationFailedCode = 18
 
 type MongoDbClient interface {
 	GetMongoDatabase(ctx context.Context) (*mongo.Database, error)
@@ -113,8 +115,12 @@ func (m *MongoDbClientImpl) getNewConnectionProperties(ctx context.Context, clas
 
 func (m *MongoDbClientImpl) isPasswordValid(db cachedMongoDatabase, ctx context.Context) bool {
 	if err := db.mongoDb.Client().Ping(ctx, readpref.Primary()); err != nil {
-		_, ok := err.(topology.ConnectionError).Unwrap().(*auth.Error)
-		return !ok
+		var cmdErr mongo.CommandError
+		if errors.As(err, &cmdErr) {
+			return cmdErr.Code != authenticationFailedCode
+		}
+		var authErr *auth.Error
+		return !errors.As(err, &authErr)
 	}
 	return true
 }
