@@ -11,7 +11,7 @@ This module provides convenient way of interaction with **mongo** databases prov
 `Mongo dbaas go client` supports _multi-tenancy_ and can work with both _service_ and _tenant_ databases.
 
 > **NOTE** If you want to migrate your service from go-microservice-core to new mongo-client please check our
-> [migration guide](/docs/mongo-client-migration-guide.md)
+> [migration guide](docs/mongo-client-migration-guide.md)
 
 - [Install](#install)
 - [Usage](#usage)
