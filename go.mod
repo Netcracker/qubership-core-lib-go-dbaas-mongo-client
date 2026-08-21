@@ -1,6 +1,6 @@
 module github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/v3
 
-go 1.26.5
+go 1.27.0
 
 require (
 	github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.7.0
