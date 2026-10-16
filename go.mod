@@ -3,8 +3,8 @@ module github.com/netcracker/qubership-core-lib-go-dbaas-mongo-client/v3
 go 1.26.5
 
 require (
-	github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.8.0
-	github.com/netcracker/qubership-core-lib-go/v3 v3.15.0
+	github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3 v3.8.1
+	github.com/netcracker/qubership-core-lib-go/v3 v3.15.1
 	github.com/stretchr/testify v1.12.1
 	github.com/testcontainers/testcontainers-go v0.44.0
 	go.mongodb.org/mongo-driver v1.17.10
