@@ -7,26 +7,26 @@ import (
 	"os"
 	"testing"
 
-	"github.com/netcracker/qubership-core-lib-go/v3/configloader"
 	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model"
 	. "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/testutils"
+	"github.com/netcracker/qubership-core-lib-go/v3/configloader"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 const (
-	dbaasAgentUrlEnvName     = "dbaas.agent"
-	namespaceEnvName         = "microservice.namespace"
-	testServiceName          = "service_test"
+	dbaasAgentUrlEnvName = "dbaas.agent"
+	namespaceEnvName     = "microservice.namespace"
+	testServiceName      = "service_test"
 
-	createDatabaseV3         = "/api/v3/dbaas/test_namespace/databases"
-	getDatabaseV3            = "/api/v3/dbaas/test_namespace/databases/get-by-classifier/mongodb"
-	username                 = "service_test"
-	password                 = "qwerty127"
-	testToken                = "test-token"
-	testTokenExpiresIn       = 300
+	createDatabaseV3   = "/api/v3/dbaas/test_namespace/databases"
+	getDatabaseV3      = "/api/v3/dbaas/test_namespace/databases/get-by-classifier/mongodb"
+	username           = "service_test"
+	password           = "qwerty127"
+	testToken          = "test-token"
+	testTokenExpiresIn = 300
 )
 
 type DatabaseTestSuite struct {
@@ -135,4 +135,3 @@ func defaultDbaasResponseHandler(writer http.ResponseWriter, request *http.Reque
 	jsonResponse, _ := json.Marshal(dbResponse)
 	writer.Write(jsonResponse)
 }
-
